@@ -5,6 +5,7 @@ import './App.css';
 
 export default function App(){
   const [url, setUrl] = useState('');
+  const [YouTubeIMG, setYouTubeIMG] = useState('');
   const [URLs, setURLs] = useState([]);
 
   useEffect(() => {
@@ -21,7 +22,7 @@ export default function App(){
               for (let i = 0; i < contentLen; i++) {
                   urlList.push(stringContents[i].innerHTML);
               }
-          }
+          };
           return urlList;
         }
       }, (res)=>{
@@ -30,6 +31,11 @@ export default function App(){
       // Current tab url
       const url = tabs[0].url;
       setUrl(url);
+      if (url.includes('youtube.com')){
+        let youtube_video_id = url.match(/youtube\.com.*(\?v=|\/embed\/)(.{11})/).pop();
+        let youtube_video_im = youtube_video_id&&`https://img.youtube.com/vi/${youtube_video_id}/0.jpg`;
+        setYouTubeIMG(youtube_video_im);
+      };
     });
   }, []);
 
@@ -44,6 +50,7 @@ export default function App(){
             <p>{url.length>0?`${url.split('/')[0]+'//'+url.split('/')[2]}`:null}</p>
             <h4>博主身份</h4>
             <p>{URLs.length>1?`${URLs[0]}`:null}</p>
+            {YouTubeIMG||null?<img className='YouTubeFeatureIMG' src={YouTubeIMG} />:null}
           </div>
           <div class='col-6'>
             <div>

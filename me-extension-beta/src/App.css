@@ -21,7 +21,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(10px + 1vmin);
   color: white;
 }
 
@@ -63,6 +63,7 @@
 
 .menu {
   font-size: small;
+  text-align: initial;
 }
 
 .menu ul {
@@ -81,4 +82,9 @@
 
 .menu li:hover {
   background-color: #0099cc;
+}
+
+.YouTubeFeatureIMG {
+  width: 80%;
+  margin: 10px;
 }
